@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;        }
+        
+        button{
+            margin: 5px;
+            font-size: larger;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: green;
+            color:antiquewhite;
+        }
+
+        #decButton:hover{
+            color:antiquewhite;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+</body>
+
+
+<script>
+    var para = document.createElement("p");
+    para.innerText = 0;
+
+    var incButton = document.createElement("button");
+    incButton.setAttribute("id","incButton")
+    incButton.innerText = "Increase Value"
+
+    var decButton = document.createElement("button");
+    decButton.setAttribute("id","decButton")
+    decButton.innerText = "Decrese Value"
+
+
+    //Style..............
+
+    var box = document.querySelector("#container");
+    // box.style.border = "10px solid green";
+    box.style.width = "400px";
+    box.style.margin = "auto"
+    box.style.marginTop = "200px";
+    para.style.textAlign = "center";
+    para.style.fontSize = "50px"
+    incButton.style.border = "2px solid green";
+    incButton.style.borderRadius = "10px";
+    decButton.style.border = "2px solid red";
+    decButton.style.borderRadius = "10px";
+    
+
+    //Append.....
+    box.append(para);
+    box.appendChild(incButton)
+    box.appendChild(decButton)
+
+    //Event Listner
+
+    document.querySelector("#incButton").addEventListener('click',incFunction);
+
+    document.querySelector("#decButton").addEventListener('click',decFunction);
+
+
+
+
+    var count;
+    if(localStorage.getItem('count') == null){
+        count = 0;
+    }else{
+        count = localStorage.getItem('count')
+    }
+    para.innerText = count;
+    function incFunction(){
+        count++;
+        localStorage.setItem("count",count);
+        para.innerText = count;
+    }
+
+    function decFunction(){
+            count--
+            localStorage.setItem('count',count);
+            para.innerText = count;
+    }
+
+</script>
+
+</html>
